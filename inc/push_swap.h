@@ -39,8 +39,9 @@ void	ft_debug(char *str, char*str2, t_env	*env);
 void	ft_debug_this(char	*str);
 
 // *	---=[ Main | main.c ]=---
-
 int		my_exit(t_env *e, int failure);
 void	ft_error(t_env *e, char	*error_msg, int failure);
 
+// *	---=[ Input Processing | input_processing.c ]=---
+int		input_error_check(t_env e, int ac, char **av);
 #endif
