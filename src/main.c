@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:25:43 by cjackows          #+#    #+#             */
-/*   Updated: 2023/05/15 13:18:04 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:13:43 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,35 @@
 
 int	main(int ac, char **av)
 {
-	t_env	e;
-	// char	**str_arr_inp;
+	t_ps	env;
 
-	ft_memset(&e, 0, sizeof(e));
-	input_error_check(e, ac, av);
-	// parser(e, ac, av);
-	return (0);
+	ft_memset(&env, 0, sizeof(env));
+	input_check(env, ac, av);
+	// parser(env, ac, av);
 }
 
-void	ft_error_handler(t_env *e, char	*error_msg, int failure)
+//		printf("%s number-> %li%s\n",T_DEBUG, number, NC);
+
+void	ft_error_handler(t_ps *env, char	*error_msg, int failure)
 {
 	if (failure == -1)
 	{
+		ft_printf("%s@Input_check %s\n",ERROR, NC);
 		ft_printf("%s%s%s\n",ERROR, error_msg, NC);
+		ft_printf("%s./push_swap [unique numbers in INT 32bit range]%s\n", \
+		B_INFO, NC);
+		ft_printf("%s./push_swap 1 2 3 4 5%s\n", B_INFO, NC);
+		ft_printf("%sARG=\"4 67 3 87 23\"; ./push_swap $ARG | \
+./checker_OS $ARG%s\n", B_INFO, NC);
 		exit(EXIT_FAILURE);
 	}
 	if (!failure)
 	{
-		// free(e); 
 		ft_printf("%s%s%s\n",ERROR, error_msg, NC);
 		exit(EXIT_SUCCESS);	
 	}
 	if (failure)
 	{
-		// free(e);
 		ft_printf("%s%s%s\n",ERROR, error_msg, NC);
 		exit(EXIT_FAILURE);
 	}
