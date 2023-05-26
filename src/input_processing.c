@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:42:49 by cjackows          #+#    #+#             */
-/*   Updated: 2023/05/24 15:41:59 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:59:33 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	passed_arguments_isdigit_values_check(t_ps env, int ac, char **av)
 	{
 		while (av[i][l])
 		{
-			if (!ft_isdigit(av[i][l]))
-				ft_error_handler(&env, "ARGUMENTS OTHER THAN DIGITS PASSED", -1);
+			if (!ft_isdigit(av[i][l]) && (av[i][l] != '-') && (av[i][l] != '+'))
+				ft_error_handler(&env, "INTIGERS ARGUMENTS ARE INVALID", -1);
 			l++;
 		}
 		l = 0;
@@ -69,6 +69,7 @@ static void	passed_arguments_doubles_check(t_ps env, int ac, char **av)
 	while (i < ac)
 	{
 		number = ft_atol(av[i]);
+		printf("number = %li\n", number);
 		l = i;
 		while (++l < ac)
 		{
@@ -87,7 +88,6 @@ void	input_check(t_ps env, int ac, char **av)
 	if (ac <= 2)
 	{
 		ft_error_handler(&env, "NOT ENOUGH ARGUMENTS PASSED", -1);
-		
 	}
 	else
 	{

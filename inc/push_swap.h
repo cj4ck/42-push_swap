@@ -52,4 +52,3 @@ void	input_check(t_ps env, int ac, char **av);
 // void	print_push_swap_usage_instructions(void);
 
 #endif
-`
