@@ -6,7 +6,7 @@
 #    By: cjackows <cjackows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/11 11:25:13 by cjackows          #+#    #+#              #
-#    Updated: 2023/05/24 15:44:08 by cjackows         ###   ########.fr        #
+#    Updated: 2023/05/30 16:16:06 by cjackows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,12 @@ HDRS 		=	-I$(LIBFT_DIR)/inc -I$(HDRS_DIR)
 LIBS		=	-L$(LIBFT_DIR)
 OBJ			=	$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
-all: $(NAME)
+all: libft ascii-art $(NAME)
 
-$(NAME): libft ascii-art $(OBJ)
+$(NAME): $(OBJ)
 	@echo
 	@echo "$(COMPILATION)$(NAME) compilation with $(OS)-flags.$(RESET)"
-	@$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) $(LIBS) $(OBJ) -o $(NAME) $(LIBFT)
 	@echo "$(INFO)$@ executable has been created$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -62,7 +62,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 
 libft:
-	@make  -C  $(LIBFT_DIR)
+	make  -C  $(LIBFT_DIR)
 	@clear
 
 clean:
