@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:26:43 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/01 14:34:31 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:36:38 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,31 +71,31 @@ static	void	create_parts(t_list **A, t_list **B, int min, int max)
 		smart_pa(A, B);
 }
 
-void	sort_stack(t_list **stack_a, t_list **stack_b)
+void	sort_stack(t_list **A, t_list **B)
 {
 	int	min;
 	int	max;
 
-	min = find_minimum_val(*stack_a);
-	max = find_maximum_val(*stack_a);
-	if (is_sorted(*stack_a))
+	min = find_minimum_val(*A);
+	max = find_maximum_val(*A);
+	if (is_sorted(*A))
 		return ;
-	if (ft_lstsize(*stack_a) > 50)
-		create_parts(stack_a, stack_b, min, max);
+	if (ft_lstsize(*A) > 50)
+		create_parts(A, B, min, max);
 	else
 	{
-		while (!is_sorted(*stack_a) || ft_lstsize(*stack_b) != 0)
+		while (!is_sorted(*A) || ft_lstsize(*B) != 0)
 		{
-			if (ft_lstsize(*stack_a) == 2)
-				sa(stack_a);
-			else if (ft_lstsize(*stack_a) < 4)
+			if (ft_lstsize(*A) == 2)
+				sa(A);
+			else if (ft_lstsize(*A) < 4)
 			{
-				sort_three_elements(stack_a);
-				while (ft_lstsize(*stack_b) > 0)
-					pa(stack_a, stack_b);
+				sort_three_elements(A);
+				while (ft_lstsize(*B) > 0)
+					pa(A, B);
 			}
 			else
-				smart_pb(stack_a, stack_b, ft_lstsize(*stack_a));
+				smart_pb(A, B, ft_lstsize(*A));
 		}
 	}
 }

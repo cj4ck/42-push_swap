@@ -25,20 +25,22 @@ HDRS_DIR	=	./inc/
 SRC_DIR		=	./src
 OBJ_DIR		=	./obj
 
-SRC			=	$(wildcard $(SRC_DIR)/*.c) #! HAS TO BE CHANGED AFTER PROJECT IS COMPLETED
+SRC			=	_main.c game_operations_rr.c index_node.c not_unique.c sorting_algorithm_1.c stack_operations.c \
+				game_operations_r.c game_operations_s_and_p.c initialize.c parser.c sorting_algorithm_2.c stack_vars.c
 HDRS 		=	-I$(LIBFT_DIR)/inc -I$(HDRS_DIR)
 LIBS		=	-L$(LIBFT_DIR)
-OBJ			=	$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+OBJ         = 	$(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC))
 
 all: libft ascii-art $(NAME)
 
 $(NAME): $(OBJ)
 	@echo
-	@echo "$(COMPILATION)$(NAME) compilation with $(OS)-flags.$(RESET)"
+	@echo "$(COMPILATION)$(NAME) compilation.$(RESET)"
 	@$(CC) $(CFLAGS) $(LIBS) $(HDRS) $(OBJ) -o $(NAME) $(LIBFT)
 	@echo "$(INFO)$@ executable has been created$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(DEFINE_FLAGS) $(HDRS) -c $^ -o $@
 	$(eval CURRENT_PROGRESS=$(shell echo $$(($(CURRENT_PROGRESS)+1))))
 	$(eval PERCENTAGE=$(shell echo $$(($(CURRENT_PROGRESS)*100/$(TOTAL_PROGRESS)))))

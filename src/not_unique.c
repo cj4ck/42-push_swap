@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:26:35 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/01 10:53:29 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:47:10 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	not_unique(int *tab, size_t size)
 		{
 			if (tab[i] == tab[j])
 			{
+				free(tab);
 				return (1);
 			}
 			j++;

@@ -6,76 +6,76 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:26:43 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/01 14:33:29 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:36:38 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three_elements(t_list **stack_a)
+void	sort_three_elements(t_list **A)
 {
 	t_list	*tmp;
 
-	tmp = *stack_a;
+	tmp = *A;
 	if (tmp->next->next->content > tmp->next->content
 		&& tmp->next->next->content > tmp->content)
-		sa(stack_a);
+		sa(A);
 	else if (tmp->next->content > tmp->next->next->content
 		&& tmp->next->content > tmp->content)
 	{
 		if (tmp->content > tmp->next->next->content)
-			rra(stack_a);
+			rra(A);
 		else
 		{
-			sa(stack_a);
-			ra(stack_a);
+			sa(A);
+			ra(A);
 		}
 	}
 	else if (tmp->next->content > tmp->next->next->content)
 	{
-		sa(stack_a);
-		rra(stack_a);
+		sa(A);
+		rra(A);
 	}
 	else
-		ra(stack_a);
+		ra(A);
 }
 
-void	smart_pb(t_list **stack_a, t_list **stack_b, size_t n)
+void	smart_pb(t_list **A, t_list **B, size_t n)
 {
 	size_t	index;
 	size_t	i;
 
 	i = 0;
-	index = find_minimum_index(*stack_a, n);
+	index = find_minimum_index(*A, n);
 	if (index < n / 2)
 	{
 		while (i++ < index)
-			ra(stack_a);
+			ra(A);
 	}
 	else
 	{
 		while (i++ < n - index)
-			rra(stack_a);
+			rra(A);
 	}
-	pb(stack_a, stack_b);
+	pb(A, B);
 }
 
-void	smart_pa(t_list **stack_a, t_list **stack_b)
+void	smart_pa(t_list **A, t_list **B)
 {
 	int	index;
 	int	val;
 
-	index = find_maximum_index(*stack_b);
-	val = find_maximum_val(*stack_b);
-	if (index < (ft_lstsize(*stack_b) / 2))
+	index = find_maximum_index(*B);
+	val = find_maximum_val(*B);
+	if (index < (ft_lstsize(*B) / 2))
 	{
-		while ((*stack_b)->content != val)
-			rb(stack_b);
+		while ((*B)->content != val)
+			rb(B);
 	}
 	else
 	{
-		while ((*stack_b)->content != val)
-			rrb(stack_b);
+		while ((*B)->content != val)
+			rrb(B);
 	}
-	pa(stack_a, stack_b);
+	pa(A, B);
 }

@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:50:52 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/01 14:33:08 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:36:38 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int		not_unique(int *tab, size_t size);
 void	initialize_list(int *tab, size_t size, t_list **lst);
 
 //*     --=[ sorting_algorithm_*.c ]=--
-void	sort_stack(t_list **stack_a, t_list **stack_b);
+void	sort_stack(t_list **A, t_list **B);
 
-void	sort_three_elements(t_list **stack_a);
-void	smart_pb(t_list **stack_a, t_list **stack_b, size_t n);
-void	smart_pa(t_list **stack_a, t_list **stack_b);
+void	sort_three_elements(t_list **A);
+void	smart_pb(t_list **A, t_list **B, size_t n);
+void	smart_pa(t_list **A, t_list **B);
 
 //*     --=[ stack_vars.c ]=--
 int		find_minimum_index(t_list *lst, size_t n);

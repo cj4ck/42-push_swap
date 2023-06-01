@@ -6,19 +6,19 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:47:02 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/01 13:52:51 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:38:57 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// static	void	print_stacks(t_list *stack_a, t_list *stack_b)
+// static	void	print_stacks(t_list *A, t_list *B)
 // {
 // 	t_list	*tmp_a;
 // 	t_list	*tmp_b;
 
-// 	tmp_a = stack_a;
-// 	tmp_b = stack_b;
+// 	tmp_a = A;
+// 	tmp_b = B;
 // 	ft_putstr_fd("__A__     __B__\n", 1);
 // 	while (!(tmp_a == 0 && tmp_b == 0))
 // 	{
@@ -64,8 +64,8 @@ static	int	input_check(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_list	**stack_a;
-	t_list	**stack_b;
+	t_list	**a;
+	t_list	**b;
 	int		*tab_of_numbers;
 	int		size;
 
@@ -76,15 +76,15 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
-	stack_a = (t_list **)malloc(sizeof(t_list));
-	stack_b = (t_list **)malloc(sizeof(t_list));
-	*stack_a = 0;
-	*stack_b = 0;
-	initialize_list(tab_of_numbers, size, stack_a);
+	a = (t_list **)malloc(sizeof(t_list));
+	b = (t_list **)malloc(sizeof(t_list));
+	*a = 0;
+	*b = 0;
+	initialize_list(tab_of_numbers, size, a);
 	if (size > 1)
-		sort_stack(stack_a, stack_b);
+		sort_stack(a, b);
 	free(tab_of_numbers);
-	free_stack(stack_a);
-	free_stack(stack_b);
+	free_stack(a);
+	free_stack(b);
 	return (0);
 }
