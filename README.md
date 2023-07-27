@@ -53,3 +53,4 @@ The following operations are available for sorting the stacks:
 
 `rrr:` Reverse rotate both stack A and stack B simultaneously.
 
+<img width="680" alt="Screen Shot 2023-07-27 at 4 25 54 PM" src="https://github.com/cj4ck/42-push_swap/assets/75099354/6728a357-6ee9-41e8-9203-c51afdce3ccd">
