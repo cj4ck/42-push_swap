@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:47:02 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/01 14:38:57 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:17:17 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int ac, char **av)
 
 	size = input_check(ac, av);
 	tab_of_numbers = parser(ac, av);
-	if (tab_of_numbers == 0 || not_unique(tab_of_numbers, size))
+	if (tab_of_numbers == 0 || not_unique(tab_of_numbers, size) || ac == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (0);

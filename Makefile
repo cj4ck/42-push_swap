@@ -1,3 +1,4 @@
+BASE		=	\033[38;5;
 RED			=	\033[38;5;160m
 RED_B		=	\033[48;5;160m
 DELETED		=	\033[48;5;160m[DELETED]\033[0m
@@ -9,8 +10,15 @@ BLUE_B		=	\033[48;5;39m
 INFO		=	\033[48;5;39m[INFORMATION]\033[0m $(BLUE)
 RESET		=	\033[0m
 PROGRESS_WIDTH = 20
-PROGRESS_DONE_CHAR = 🟩
-PROGRESS_TODO_CHAR = ⬜️
+ifeq ($(shell uname), Linux)
+	OS			=	Linux
+	PROGRESS_DONE_CHAR = \#
+	PROGRESS_TODO_CHAR = -
+else
+	OS				=	Mac
+	PROGRESS_DONE_CHAR = 🟩
+	PROGRESS_TODO_CHAR = ⬜️
+endif
 CURRENT_PROGRESS = 0
 TOTAL_PROGRESS = $(words $(OBJ))
 
@@ -45,12 +53,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(eval CURRENT_PROGRESS=$(shell echo $$(($(CURRENT_PROGRESS)+1))))
 	$(eval PERCENTAGE=$(shell echo $$(($(CURRENT_PROGRESS)*100/$(TOTAL_PROGRESS)))))
 	@if [ $(CURRENT_PROGRESS) -eq $(TOTAL_PROGRESS) ]; then \
-		printf "\r$(GREEN_B)[COMPILATION]$(RESET) \033[38;5;40m$(PERCENTAGE)%% [$$(printf '%*s' $$(($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS))) | tr ' ' '$(PROGRESS_DONE_CHAR)')$$(printf '%*s' $$(($(PROGRESS_WIDTH)-($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS)))) | tr ' ' '$(PROGRESS_TODO_CHAR)')] $<\033[0m ✅                   "; \
+		printf "\033[2A\r\033[K\033[48;5;40m[COMPILATION]\033[0m \033[38;5;40m$(PERCENTAGE)%% [$$(printf '%*s' $$(($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS))) | tr ' ' '$(PROGRESS_DONE_CHAR)')$$(printf '%*s' $$(($(PROGRESS_WIDTH)-($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS)))) | tr ' ' '$(PROGRESS_TODO_CHAR)')] $<\033[0m ✅\n"; \
 	else \
-		printf "\r$(GREEN_B)[COMPILATION]$(RESET) \033[38;5;51m$(PERCENTAGE)%% [$$(printf '%*s' $$(($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS))) | tr ' ' '$(PROGRESS_DONE_CHAR)')$$(printf '%*s' $$(($(PROGRESS_WIDTH)-($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS)))) | tr ' ' '$(PROGRESS_TODO_CHAR)')] $<"; \
+		printf "\033[2A\r\033[K\033[48;5;40m[COMPILATION]\033[0m \033[38;5;51m$(PERCENTAGE)%% [$$(printf '%*s' $$(($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS))) | tr ' ' '$(PROGRESS_DONE_CHAR)')$$(printf '%*s' $$(($(PROGRESS_WIDTH)-($(CURRENT_PROGRESS)*$(PROGRESS_WIDTH)/$(TOTAL_PROGRESS)))) | tr ' ' '$(PROGRESS_TODO_CHAR)')] $<$(RESET)\n\n"; \
 	fi
 	@sleep 0.01
-
 
 libft:
 	@make all --quiet -C  $(LIBFT_DIR)
@@ -92,15 +99,15 @@ git:
 	@echo "$(INFO)$(GREEN)Git add, commit, push performed ✅$(RESET)"
 
 ascii-art:
-	@echo "\033[38;5;231m                                                                                              __   __ \033[0m"
-	@echo "\033[38;5;231m    _____ ________          __________             .__                                        \  \\ \  \\ \033[0m"
-	@echo "\033[38;5;195m   /  |  |\_____  \         \______   \__ __  _____|  |__        ________  _  _______  ______  \  \\ \  \\ \033[0m"
-	@echo "\033[38;5;159m  /   |  |_/  ____/   ______ |    .___/  |  \/  ___/  |  \      /  ___/\ \/ \/ /\__  \ \___  \  \  \\ \  \\ \033[0m"
-	@echo "\033[38;5;123m /    ^   /       \  /_____/ |    |   |  |  /\___ \|   Y  \     \___ \  \     /  / __ \|   \` |  /  / /  / \033[0m"
-	@echo "\033[38;5;123m \____   |\_______ \         |____|   |____//____  >___|  /____/____  |  \/\_/  (____  /   __/ /  / /  / \033[0m"
-	@echo "\033[38;5;123m      |__|        \/                             \/     \/_____/    \/               \/|__|   /  / /  / \033[0m"
-	@echo "\033[38;5;123m                                                                                             /__/ /__/ \033[0m"
-	@echo
+	@echo "\033[38;5;231m                                                                                              ▁▁   ▁▁ \033[0m"
+	@echo "\033[38;5;231m    ▁▁▁▁▁ ▁▁▁▁▁▁▁▁          ▁▁▁▁▁▁▁▁▁▁             .▁▁                                        ╲  ╲ ╲  ╲ \033[0m"
+	@echo "\033[38;5;195m   ╱  │  │╲▁▁▁▁▁  ╲         ╲▁▁▁▁▁▁   ╲▁▁ ▁▁  ▁▁▁▁▁│  │▁▁        ▁▁▁▁▁▁▁▁  ▁  ▁▁▁▁▁▁▁  ▁▁▁▁▁▁  ╲  ╲ ╲  ╲ \033[0m"
+	@echo "\033[38;5;159m  ╱   │  │▁╱  ▁▁▁▁╱   ▁▁▁▁▁▁ │    .▁▁▁╱  │  ╲╱  ▁▁▁╱  │  ╲      ╱  ▁▁▁╱╲ ╲╱ ╲╱ ╱╲▁▁  ╲ ╲▁▁▁  ╲  ╲  ╲ ╲  ╲ \033[0m"
+	@echo "\033[38;5;123m ╱    ^   ╱       ╲  ╱▁▁▁▁▁╱ │    │   │  │  ╱╲▁▁▁ ╲│   Y  ╲     ╲▁▁▁ ╲  ╲     ╱  ╱ ▁▁ ╲│   ╲\` │ ╱  ╱ ╱  ╱ \033[0m"
+	@echo "\033[38;5;123m ╲▁▁▁▁   │╲▁▁▁▁▁▁▁ ╲         │▁▁▁▁│   │▁▁▁▁╱╱▁▁▁▁  >▁▁▁│  ╱▁▁▁▁╱▁▁▁▁  │  ╲╱╲▁╱  (▁▁▁▁  ╱   ▁▁╱ ╱  ╱ ╱  ╱ \033[0m"
+	@echo "\033[38;5;123m      │▁▁│        ╲╱                             ╲╱     ╲╱▁▁▁▁▁╱    ╲╱               ╲╱│▁▁│   ╱  ╱ ╱  ╱ \033[0m"
+	@echo "\033[38;5;123m                                                                                             ╱▁▁╱ ╱▁▁╱ \033[0m"
+	@echo; echo;
 
 
 .PHONY: all clean fclean re sre git libft
