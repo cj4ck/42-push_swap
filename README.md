@@ -11,7 +11,7 @@ The project focuses on optimizing the sorting process by using a limited set of 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/42-push_swap.git
+git clone https://github.com/cj4ck/42-push_swap.git
 cd 42-push_swap
 ```
 
